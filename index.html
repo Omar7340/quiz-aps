@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Sécurité Privée</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1><i class="fas fa-shield-alt"></i> Plateforme de Quiz - Sécurité Privée</h1>
+            <p class="subtitle">Formation et entraînement aux métiers de la sécurité</p>
+        </header>
+
+        <main class="dashboard">
+            <div class="welcome-card">
+                <h2><i class="fas fa-graduation-cap"></i> Bienvenue</h2>
+                <p>Cette plateforme vous permet de vous entraîner avec différents quiz sur la sécurité privée.</p>
+                <div class="features">
+                    <p><i class="fas fa-check-circle"></i> Réponses instantanées</p>
+                    <p><i class="fas fa-check-circle"></i> Pas d'authentification</p>
+                    <p><i class="fas fa-check-circle"></i> Quiz illimités</p>
+                    <p><i class="fas fa-check-circle"></i> Ajout facile de nouveaux quiz</p>
+                </div>
+            </div>
+
+            <div class="quiz-selection">
+                <h2><i class="fas fa-list-alt"></i> Quiz disponibles</h2>
+                
+                <div class="quiz-grid">
+                    <!-- Quiz 1 -->
+                    <a href="quiz1.html" class="quiz-card">
+                        <div class="quiz-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="quiz-info">
+                            <h3>UV2 - Cadre Juridique</h3>
+                            <p>65 questions sur le droit pénal et la législation sécurité</p>
+                            <div class="quiz-meta">
+                                <span><i class="fas fa-question-circle"></i> 65 questions</span>
+                                <span><i class="fas fa-clock"></i> 30-45 min</span>
+                            </div>
+                        </div>
+                        <div class="quiz-action">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </a>
+
+                    <!-- Quiz 2 (exemple) -->
+                    <a href="quiz2.html" class="quiz-card">
+                        <div class="quiz-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="quiz-info">
+                            <h3>UV3 - Techniques Professionnelles</h3>
+                            <p>Questions sur les pratiques métier et interventions</p>
+                            <div class="quiz-meta">
+                                <span><i class="fas fa-question-circle"></i> 50 questions</span>
+                                <span><i class="fas fa-clock"></i> 25-35 min</span>
+                            </div>
+                        </div>
+                        <div class="quiz-action">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </a>
+
+                    <!-- Template pour ajouter un quiz -->
+                    <div class="quiz-card add-quiz" onclick="showAddQuizModal()">
+                        <div class="quiz-icon">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <div class="quiz-info">
+                            <h3>Ajouter un nouveau quiz</h3>
+                            <p>Créez votre propre questionnaire</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions">
+                <h3><i class="fas fa-info-circle"></i> Comment ajouter un quiz ?</h3>
+                <ol>
+                    <li>Créez un fichier HTML (ex: <code>quiz3.html</code>)</li>
+                    <li>Créez un fichier JS dans <code>data/quiz3.js</code> avec vos questions</li>
+                    <li>Ajoutez une carte de quiz dans cette page</li>
+                </ol>
+            </div>
+        </main>
+
+        <footer>
+            <p>Plateforme éducative - Hébergée sur GitHub Pages</p>
+            <p class="github-link">
+                <i class="fab fa-github"></i> 
+                <a href="https://github.com/votre-utilisateur/quiz-securite" target="_blank">
+                    Voir le code source
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Modal pour ajouter un quiz (optionnel) -->
+    <div id="addQuizModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-plus"></i> Ajouter un quiz</h2>
+            <p>Pour ajouter un quiz, suivez les instructions dans le fichier README.md du projet.</p>
+            <p>Le système est conçu pour être facilement extensible.</p>
+        </div>
+    </div>
+
+    <script>
+        function showAddQuizModal() {
+            document.getElementById('addQuizModal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('addQuizModal').style.display = 'none';
+        }
+        
+        // Fermer la modal en cliquant à l'extérieur
+        window.onclick = function(event) {
+            const modal = document.getElementById('addQuizModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
