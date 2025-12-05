@@ -105,13 +105,8 @@ body {
 .quiz-icon {
     font-size: 2.5rem;
     color: #4a6491;
-    margin-right: 20px;
     display: flex;
     align-items: center;
-}
-
-.quiz-info {
-    flex: 1;
 }
 
 .quiz-info h3 {
@@ -189,6 +184,9 @@ body {
     gap: 20px;
     font-size: 0.9rem;
     opacity: 0.9;
+    flex: 1;
+    flex-direction: column;
+    margin: 0 20px;
 }
 
 /* Barre de progression */

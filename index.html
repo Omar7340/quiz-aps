@@ -65,67 +65,21 @@
                             <i class="fas fa-play-circle"></i>
                         </div>
                     </a>
-
-                    <!-- Template pour ajouter un quiz -->
-                    <div class="quiz-card add-quiz" onclick="showAddQuizModal()">
-                        <div class="quiz-icon">
-                            <i class="fas fa-plus-circle"></i>
-                        </div>
-                        <div class="quiz-info">
-                            <h3>Ajouter un nouveau quiz</h3>
-                            <p>Créez votre propre questionnaire</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <div class="instructions">
-                <h3><i class="fas fa-info-circle"></i> Comment ajouter un quiz ?</h3>
-                <ol>
-                    <li>Créez un fichier HTML (ex: <code>quiz3.html</code>)</li>
-                    <li>Créez un fichier JS dans <code>data/quiz3.js</code> avec vos questions</li>
-                    <li>Ajoutez une carte de quiz dans cette page</li>
-                </ol>
-            </div>
         </main>
 
         <footer>
             <p>Plateforme éducative - Hébergée sur GitHub Pages</p>
             <p class="github-link">
                 <i class="fab fa-github"></i> 
-                <a href="https://github.com/votre-utilisateur/quiz-securite" target="_blank">
+                <a href="https://github.com/Omar7340/quiz-aps" target="_blank">
                     Voir le code source
                 </a>
             </p>
         </footer>
     </div>
 
-    <!-- Modal pour ajouter un quiz (optionnel) -->
-    <div id="addQuizModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2><i class="fas fa-plus"></i> Ajouter un quiz</h2>
-            <p>Pour ajouter un quiz, suivez les instructions dans le fichier README.md du projet.</p>
-            <p>Le système est conçu pour être facilement extensible.</p>
-        </div>
-    </div>
-
-    <script>
-        function showAddQuizModal() {
-            document.getElementById('addQuizModal').style.display = 'block';
-        }
-        
-        function closeModal() {
-            document.getElementById('addQuizModal').style.display = 'none';
-        }
-        
-        // Fermer la modal en cliquant à l'extérieur
-        window.onclick = function(event) {
-            const modal = document.getElementById('addQuizModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>
