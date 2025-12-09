@@ -131,8 +131,8 @@ const quizConfig = {
                 "La tenue de l'entreprise qui détient le contrat",
                 "Je dois porter ma tenue mais avec les insignes et les logos de l'entreprise qui détient le contrat"
             ],
-            correct: 3,
-            explanation: "L'agent en sous-traitance doit porter la tenue de l'entreprise titulaire du contrat principal."
+            correct: 2,
+            explanation: "Aucune des autres réponses n’est correcte, car la réglementation impose une tenue conforme aux obligations légales (numéro, mention “sécurité privée”, insignes), sans exiger spécifiquement la tenue de l’une ou l’autre entreprise."
         },
         {
             id: 11,
@@ -183,7 +183,7 @@ const quizConfig = {
                 "Aucune des autres réponses",
                 "Bulletin N°3"
             ],
-            correct: 1,
+            correct: 0,
             explanation: "Le CNAPS consulte le bulletin n°2 du casier judiciaire pour vérifier l'absence de condamnations incompatibles."
         },
         {
@@ -209,7 +209,7 @@ const quizConfig = {
                 "Aucune des autres réponses",
                 "Il a 12 mois pour travailler et passer la formation avant sa perte définitive"
             ],
-            correct: 1,
+            correct: 2,
             explanation: "Une attestation d'inscription au MAC permet de continuer à travailler pendant le délai de régularisation."
         },
         {
@@ -274,7 +274,7 @@ const quizConfig = {
                 "Le casier judiciaire contient les condamnations pénales d'une même personne",
                 "Le casier judiciaire contient les condamnations pénales et civiles d'une même personne"
             ],
-            correct: 0,
+            correct: 3,
             explanation: "Le casier judiciaire recense les condamnations pénales. Il existe 3 bulletins (n°1, n°2, n°3)."
         },
         {
@@ -376,8 +376,8 @@ const quizConfig = {
                 "L'article 226-1 du code pénal",
                 "L'article 226-1 du code civil"
             ],
-            correct: 2,
-            explanation: "L'article 226-1 du code pénal sanctionne l'atteinte à la vie privée par fixation d'images."
+            correct: 1,
+            explanation: "L'article 9 code civil \"Chacun a droit au respect de sa vie privée.\"."
         },
         {
             id: 30,
@@ -414,8 +414,8 @@ const quizConfig = {
                 "C",
                 "A"
             ],
-            correct: 2,
-            explanation: "Les fusils de chasse à un coup sont classés en catégorie D (arme de chasse)."
+            correct: 3,
+            explanation: "Les fusils de chasse à un coup sont classés en catégorie C (soumise à déclaration)."
         },
         {
             id: 33,
@@ -530,8 +530,8 @@ const quizConfig = {
                 "Le bulletin n°3 comporte toutes les décisions de justice (peines de prison, amende….)",
                 "Le bulletin n°3 comporte uniquement les condamnations les plus graves"
             ],
-            correct: 2,
-            explanation: "Le bulletin n°3 contient l'ensemble des condamnations (correctionnelles et criminelles)."
+            correct: 3,
+            explanation: "Le bulletin n°3 comporte uniquement les condamnations les plus graves."
         },
         {
             id: 42,
@@ -647,8 +647,8 @@ const quizConfig = {
                 "Aucune des autres réponses",
                 "D'un revolver"
             ],
-            correct: 2,
-            explanation: "Seules les bombes lacrymogènes de moins de 100ml sont autorisées pour ce type de surveillance."
+            correct: 1,
+            explanation: "Seules les bâtons de défense sont autorisées pour ce type de surveillance."
         },
         {
             id: 51,
@@ -673,7 +673,7 @@ const quizConfig = {
                 "L'employeur ne risque rien",
                 "1 an d'emprisonnement et 2 000 euros d'amende"
             ],
-            correct: 0,
+            correct: 2,
             explanation: "Embaucher un agent sans carte professionnelle est sanctionné par l'article L. 622-13 du CSI."
         },
         {
@@ -737,7 +737,7 @@ const quizConfig = {
                 "Aucune des autres réponses",
                 "Poster un pli urgent à la poste sur demande du client"
             ],
-            correct: 4,
+            correct: 3,
             explanation: "Le principe d'exclusivité interdit toute activité étrangère à la mission de sécurité."
         },
         {
@@ -802,8 +802,8 @@ const quizConfig = {
                 "Article 122-5 du code pénal",
                 "Article R661-1 du code pénal"
             ],
-            correct: 0,
-            explanation: "L'article 53 CPP permet l'appréhension par un agent de sécurité en cas de flagrant délit."
+            correct: 2,
+            explanation: "L'article 73 du CPP permet l'appréhension par un agent de sécurité en cas de flagrant délit."
         },
         {
             id: 63,
@@ -828,8 +828,8 @@ const quizConfig = {
                 "En prenant indûment la qualité d'une personne dépositaire de l'autorité publique",
                 "Dans un magasin après avoir rendu inopérantes les caméras de surveillance"
             ],
-            correct: 1,
-            explanation: "Le vol avec introduction dans un lieu clos par ruse est une circonstance aggravante (article 311-4 CP)."
+            correct: 3,
+            explanation: "Le vol avec usurpation de personne depositaire de l'autorité publique est une circonstance aggravante (article 311-4 CP)."
         }
     ]
 };
