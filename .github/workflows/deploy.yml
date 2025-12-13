@@ -31,6 +31,12 @@ jobs:
             measurementId: "${{ secrets.FIREBASE_MEASUREMENT_ID }}"
           };
           EOF
+          echo "Firebase config file generated"
+          if grep -q '""' js/config.js; then
+            echo "⚠️  WARNING: Some Firebase secrets are empty!"
+            echo "Please add the following secrets to your GitHub repository:"
+            echo "Settings → Secrets and variables → Actions"
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
