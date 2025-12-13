@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Live - Participant</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="live-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="student-container">
+        <!-- Header -->
+        <header class="student-header">
+            <span class="quiz-title" id="quiz-title">Quiz Live</span>
+            <span class="participant-name" id="my-name">---</span>
+        </header>
+
+        <!-- State: Waiting for quiz to start -->
+        <div id="state-waiting" class="student-state">
+            <div class="state-icon">
+                <i class="fas fa-hourglass-half fa-spin"></i>
+            </div>
+            <h2>En attente...</h2>
+            <p>L'enseignant va bientot commencer le quiz</p>
+            <div class="session-info-badge">
+                <span>Session: </span>
+                <span id="waiting-session-code">------</span>
+            </div>
+        </div>
+
+        <!-- State: Question display -->
+        <div id="state-question" class="student-state hidden">
+            <div class="question-progress">
+                <span id="question-number">Question 1/10</span>
+            </div>
+
+            <div class="question-content">
+                <h2 id="question-text"></h2>
+            </div>
+
+            <div class="answer-buttons" id="answer-buttons">
+                <!-- Answer buttons will be injected here -->
+            </div>
+        </div>
+
+        <!-- State: Answered (waiting for next question) -->
+        <div id="state-answered" class="student-state hidden">
+            <div class="state-icon answered-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Reponse enregistree !</h2>
+            <p>En attente de la question suivante...</p>
+
+            <!-- Feedback (shown when teacher reveals results) -->
+            <div id="answer-feedback" class="answer-feedback hidden">
+                <div class="feedback-result" id="feedback-result">
+                    <!-- Correct/Incorrect indicator -->
+                </div>
+                <div class="feedback-explanation" id="feedback-explanation">
+                    <!-- Explanation text -->
+                </div>
+            </div>
+        </div>
+
+        <!-- State: Session ended -->
+        <div id="state-ended" class="student-state hidden">
+            <div class="state-icon">
+                <i class="fas fa-flag-checkered"></i>
+            </div>
+            <h2>Session terminee !</h2>
+
+            <div class="personal-results">
+                <div class="score-circle">
+                    <span class="score-value" id="final-score">0%</span>
+                </div>
+                <p class="score-detail">
+                    <span id="correct-answers">0</span> / <span id="total-questions">0</span> bonnes reponses
+                </p>
+            </div>
+
+            <a href="../index.html" class="btn-primary">
+                <i class="fas fa-home"></i> Retour a l'accueil
+            </a>
+        </div>
+
+        <!-- State: Disconnected -->
+        <div id="state-disconnected" class="student-state hidden">
+            <div class="state-icon error-icon">
+                <i class="fas fa-wifi-slash"></i>
+            </div>
+            <h2>Connexion perdue</h2>
+            <p>Tentative de reconnexion...</p>
+            <button id="reconnect-btn" class="btn-primary">
+                <i class="fas fa-sync"></i> Reconnecter
+            </button>
+        </div>
+
+        <!-- State: Error -->
+        <div id="state-error" class="student-state hidden">
+            <div class="state-icon error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 id="error-title">Erreur</h2>
+            <p id="error-message">Une erreur s'est produite</p>
+            <a href="join.html" class="btn-primary">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="live-common.js"></script>
+    <script src="student.js"></script>
+</body>
+</html>
