@@ -5,13 +5,32 @@ let userAnswers = {};
 let quizCompleted = false;
 
 // Initialisation
-document.addEventListener('DOMContentLoaded', function() {
+function initQuiz() {
     if (typeof quizConfig !== 'undefined') {
         currentQuiz = quizConfig;
+
+        // Update header with quiz info
+        const titleEl = document.getElementById('quiz-title');
+        const countEl = document.getElementById('quiz-question-count');
+        if (titleEl) {
+            titleEl.innerHTML = `<i class="fas fa-balance-scale"></i> ${currentQuiz.title}`;
+        }
+        if (countEl) {
+            countEl.innerHTML = `<i class="fas fa-question-circle"></i> ${currentQuiz.questions.length} questions`;
+        }
+        document.title = `Quiz ${currentQuiz.title}`;
+
         loadQuestion(currentQuestionIndex);
         updateProgress();
     }
-});
+}
+
+// Support both DOMContentLoaded and direct call (for dynamic loading)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initQuiz);
+} else {
+    initQuiz();
+}
 
 // Charger une question spécifique
 function loadQuestion(index) {

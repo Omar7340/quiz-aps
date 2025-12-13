@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz UV7 - Terrorisme</title>
+    <title>Quiz - Sécurité Privée</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,9 +14,9 @@
             <a href="index.html" class="back-btn">
                 <i class="fas fa-arrow-left"></i> Retour aux quiz
             </a>
-            <h1><i class="fas fa-balance-scale"></i> Quiz UV7 - Terrorisme </h1>
+            <h1 id="quiz-title"><i class="fas fa-spinner fa-spin"></i> Chargement...</h1>
             <div class="quiz-info">
-                <span><i class="fas fa-question-circle"></i> 35 questions</span>
+                <span id="quiz-question-count"><i class="fas fa-question-circle"></i> -- questions</span>
                 <span><i class="fas fa-redo"></i> Tentatives illimitées</span>
             </div>
         </header>
@@ -27,7 +27,7 @@
                 <div class="progress-fill" id="progress-fill">0%</div>
             </div>
             <div class="progress-stats">
-                <span id="progress-text">Question 0/35</span>
+                <span id="progress-text">Question 0/--</span>
                 <span id="score-preview">Score: 0%</span>
             </div>
         </div>
@@ -66,8 +66,27 @@
         </div>
     </div>
 
-    <!-- Chargement des scripts -->
-    <script src="data/quiz3.js"></script>
-    <script src="quiz.js"></script>
+    <!-- Chargement dynamique des scripts -->
+    <script>
+        // Get quiz ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const quizId = urlParams.get('id') || '1';
+
+        // Load the quiz data file dynamically
+        const script = document.createElement('script');
+        script.src = `data/quiz${quizId}.js`;
+        script.onload = function() {
+            // Once data is loaded, load the quiz engine
+            const quizScript = document.createElement('script');
+            quizScript.src = 'quiz.js';
+            document.body.appendChild(quizScript);
+        };
+        script.onerror = function() {
+            document.getElementById('quiz-title').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Quiz non trouvé';
+            document.getElementById('questions-container').innerHTML =
+                '<div class="question-card"><p>Le quiz demandé n\'existe pas. <a href="index.html">Retour à l\'accueil</a></p></div>';
+        };
+        document.body.appendChild(script);
+    </script>
 </body>
 </html>
