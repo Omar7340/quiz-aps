@@ -57,11 +57,26 @@
                 </button>
             </header>
 
-            <!-- Broadcast indicator -->
-            <div id="broadcast-indicator" class="broadcast-indicator hidden">
-                <span class="pulse"></span>
-                <span>Diffusion en cours</span>
-                <span class="broadcast-code">Code: <strong id="broadcast-code">------</strong></span>
+            <!-- Broadcast panel with QR code -->
+            <div id="broadcast-panel" class="broadcast-panel hidden">
+                <div class="broadcast-header">
+                    <span class="pulse"></span>
+                    <span>Diffusion en cours</span>
+                </div>
+                <div class="broadcast-join-info">
+                    <div id="broadcast-qr-code" class="broadcast-qr"></div>
+                    <div class="broadcast-details">
+                        <p class="broadcast-code-label">Code de session</p>
+                        <div class="broadcast-code-box" id="broadcast-code">------</div>
+                        <p class="broadcast-url">
+                            <i class="fas fa-link"></i>
+                            <span id="broadcast-join-link">---</span>
+                            <button class="btn-icon" onclick="copyReviewLink()" title="Copier le lien">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <div class="review-content">
@@ -129,6 +144,7 @@
     <!-- Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
     <script src="../js/config.js"></script>
     <script src="../js/firebase-config.js"></script>
     <script src="live-common.js"></script>

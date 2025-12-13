@@ -352,7 +352,14 @@ async function startBroadcast() {
 
         isBroadcasting = true;
         updateBroadcastButton();
-        showElement('broadcast-indicator');
+
+        // Generate join URL and QR code
+        const joinUrl = `${window.location.origin}${window.location.pathname.replace('review.html', 'review-student.html')}?code=${selectedSessionCode}`;
+        document.getElementById('broadcast-join-link').textContent = joinUrl;
+        document.getElementById('broadcast-code').textContent = selectedSessionCode;
+        generateReviewQRCode(joinUrl);
+
+        showElement('broadcast-panel');
 
     } catch (error) {
         console.error('Error starting broadcast:', error);
@@ -369,11 +376,40 @@ async function stopBroadcast() {
 
         isBroadcasting = false;
         updateBroadcastButton();
-        hideElement('broadcast-indicator');
+        hideElement('broadcast-panel');
 
     } catch (error) {
         console.error('Error stopping broadcast:', error);
     }
+}
+
+// Generate QR code for review join
+function generateReviewQRCode(url) {
+    const qrContainer = document.getElementById('broadcast-qr-code');
+    qrContainer.innerHTML = '';
+
+    if (typeof qrcode !== 'undefined') {
+        try {
+            const qr = qrcode(0, 'M');
+            qr.addData(url);
+            qr.make();
+            qrContainer.innerHTML = qr.createImgTag(4, 8);
+        } catch (error) {
+            console.error('QR Code error:', error);
+        }
+    }
+}
+
+// Copy review join link to clipboard
+function copyReviewLink() {
+    const link = document.getElementById('broadcast-join-link').textContent;
+    navigator.clipboard.writeText(link).then(() => {
+        const btn = document.querySelector('.broadcast-url .btn-icon');
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-copy"></i>';
+        }, 2000);
+    });
 }
 
 // Update broadcast state in Firebase

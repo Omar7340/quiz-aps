@@ -302,3 +302,27 @@ function showError(title, message) {
     document.getElementById('error-message').textContent = message;
     switchState('state-error');
 }
+
+// Rejoin review - try to reconnect to the same session
+function rejoinReview() {
+    if (sessionCode) {
+        // Reset state and rejoin
+        currentReviewIndex = -1;
+        switchState('state-waiting');
+
+        // Check if review is still/again active
+        if (reviewRef) {
+            reviewRef.once('value').then((snapshot) => {
+                const review = snapshot.val();
+                if (review && review.isActive) {
+                    currentReviewIndex = review.currentQuestionIndex;
+                    displayReviewQuestion(currentReviewIndex);
+                    switchState('state-review');
+                }
+            });
+        }
+    } else {
+        // No session code, go back to join screen
+        switchState('state-join');
+    }
+}
