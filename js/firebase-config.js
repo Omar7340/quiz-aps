@@ -12,21 +12,21 @@
 
 const firebaseConfig = {
 
-  apiKey: "FIREBASE_API_KEY",
+  apiKey: process.env.FIREBASE_API_KEY,
 
-  authDomain: "FIREBASE_PROJECT_ID.firebaseapp.com",
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
 
-  databaseURL: "https://FIREBASE_PROJECT_ID-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
 
-  projectId: "FIREBASE_PROJECT_ID",
+  projectId: process.env.FIREBASE_PROJECT_ID,
 
-  storageBucket: "FIREBASE_PROJECT_ID.firebasestorage.app",
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
 
-  messagingSenderId: "FIREBASE_MESSAGING_SENDER_ID",
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
 
-  appId: "1:FIREBASE_MESSAGING_SENDER_ID:web:0647cf010cd10b6bd8a343",
+  appId: process.env.FIREBASE_APP_ID,
 
-  measurementId: "FIREBASE_MEASUREMENT_ID"
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID
 
 };
 
