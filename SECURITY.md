@@ -10,21 +10,36 @@ The git history of this repository has been cleaned to remove previously exposed
 
 1. **Copy the example file**:
    ```bash
-   cp .env.example .env.local
+   cp js/config.js.example js/config.js
    ```
 
 2. **Fill in your Firebase credentials**:
    - Go to [Firebase Console](https://console.firebase.google.com/)
    - Select your project
    - Go to **Project Settings → Your apps → Web app**
-   - Copy the configuration values into `.env.local`
+   - Copy the configuration values into `js/config.js`
 
-3. **Never commit `.env.local`** - it's in `.gitignore`
+3. **Example `js/config.js`**:
+   ```javascript
+   window.firebaseConfig = {
+       apiKey: "YOUR_API_KEY",
+       authDomain: "your-project.firebaseapp.com",
+       databaseURL: "https://your-project-default-rtdb.region.firebasedatabase.app",
+       projectId: "your-project-id",
+       storageBucket: "your-project.firebasestorage.app",
+       messagingSenderId: "your-messaging-sender-id",
+       appId: "your-app-id",
+       measurementId: "your-measurement-id"
+   };
+   ```
 
-### For GitHub Actions / CI/CD
+4. **Never commit `js/config.js`** - it's in `.gitignore`
 
-Add these secrets to your GitHub repository:
-1. Go to **Settings → Secrets and variables → Actions**
+### For GitHub Pages / CI/CD
+
+The GitHub Actions workflow automatically injects Firebase credentials from secrets:
+
+1. Go to **Repository Settings → Secrets and variables → Actions**
 2. Add the following secrets:
    - `FIREBASE_API_KEY`
    - `FIREBASE_AUTH_DOMAIN`
@@ -34,6 +49,8 @@ Add these secrets to your GitHub repository:
    - `FIREBASE_MESSAGING_SENDER_ID`
    - `FIREBASE_APP_ID`
    - `FIREBASE_MEASUREMENT_ID`
+
+3. The workflow will generate `js/config.js` during deployment with these values
 
 ## 🔒 Firebase Security Best Practices
 
@@ -68,33 +85,40 @@ Add these secrets to your GitHub repository:
 2. Click on your Web API key
 3. Under **Application restrictions**, select **HTTP referrers**
 4. Add your domain(s):
-   - `https://yourdomain.com/*`
-   - `http://localhost:*` (for local development)
+   - `https://yourdomain.github.io/*` (GitHub Pages)
+   - `http://localhost/*` (local development)
 
 ### 3. Enable Two-Factor Authentication
 
-Protect your Firebase project account with 2FA on Google Account.
+Protect your Firebase project account with 2FA on your Google Account.
 
 ## ✅ Verification Checklist
 
-- [ ] All environment variables are set up
+- [ ] Firebase credentials are stored in GitHub Secrets (never in code)
+- [ ] Local development uses `js/config.js` (not committed)
 - [ ] Firebase Security Rules are configured for your environment
 - [ ] API keys are restricted to your domain(s)
-- [ ] `.env.local` is in `.gitignore` and never committed
-- [ ] Sensitive data is only stored in GitHub Secrets (CI/CD)
-- [ ] You've verified no secrets appear in `git log`
+- [ ] `.gitignore` includes `js/config.js` and `.env*` files
+- [ ] No secrets appear in `git log`
+- [ ] GitHub Pages deployment works and loads Firebase correctly
 
 ## 🧪 Testing
 
-To verify the environment setup:
+To verify the environment setup locally:
 
-```bash
-# Check if environment variables are accessible
-node -e "console.log(process.env.FIREBASE_API_KEY ? 'Configured ✓' : 'Missing ✗')"
-```
+1. **Create `js/config.js`** from `js/config.js.example`
+2. **Fill in your credentials**
+3. **Open the application** in your browser
+4. **Check console** for Firebase initialization messages
+
+If you see "Firebase is not configured", check that:
+- `js/config.js` exists and has correct values
+- Browser console doesn't show errors
+- Firebase SDK scripts loaded successfully
 
 ## 📚 Resources
 
 - [Firebase Security Documentation](https://firebase.google.com/docs/database/security)
 - [GitHub Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+- [GitHub Pages Documentation](https://docs.github.com/en/pages)
 - [12 Factor App - Environment Variables](https://12factor.net/config)
