@@ -1,23 +1,15 @@
 // Firebase Configuration Template
 // ================================
-// IMPORTANT: This file is for LOCAL DEVELOPMENT ONLY
-// 
-// Instructions:
-// 1. Copy this file to js/config.js
-// 2. Fill in your Firebase credentials from Firebase Console
-// 3. Never commit js/config.js - it's in .gitignore
-// 4. For GitHub Pages deployment, credentials are injected via GitHub Actions
+// Copy this file to js/config.js and fill in your Firebase credentials.
+// See SECURITY.md for information about API key restrictions.
 
-// Example:
-// window.firebaseConfig = {
-//   apiKey: "YOUR_API_KEY_HERE",
-//   authDomain: "your-project.firebaseapp.com",
-//   databaseURL: "https://your-project-default-rtdb.region.firebasedatabase.app",
-//   projectId: "your-project-id",
-//   storageBucket: "your-project.firebasestorage.app",
-//   messagingSenderId: "your-messaging-sender-id",
-//   appId: "your-app-id",
-//   measurementId: "your-measurement-id"
-// };
-
-// Uncomment and fill in above to use local config
+window.firebaseConfig = {
+    apiKey: "YOUR_API_KEY_HERE",
+    authDomain: "your-project.firebaseapp.com",
+    databaseURL: "https://your-project-default-rtdb.region.firebasedatabase.app",
+    projectId: "your-project-id",
+    storageBucket: "your-project.firebasestorage.app",
+    messagingSenderId: "your-messaging-sender-id",
+    appId: "your-app-id",
+    measurementId: "your-measurement-id"
+};

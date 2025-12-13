@@ -3,9 +3,8 @@
 .env.local
 .env.*.local
 
-# Firebase config with secrets
-firebase-config-secrets.js
-firebase-secrets.js
+# Firebase (local development overrides only)
+# Note: js/config.js IS committed intentionally - security via Firebase Console API restrictions
 
 # Node modules
 node_modules/
