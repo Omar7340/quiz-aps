@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revue de Session - Quiz Live</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="live-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="student-container">
+        <!-- Header -->
+        <header class="student-header">
+            <span class="quiz-title" id="quiz-title">Revue de Session</span>
+            <span class="participant-name" id="my-name">---</span>
+        </header>
+
+        <!-- State: Enter code -->
+        <div id="state-join" class="student-state">
+            <div class="state-icon">
+                <i class="fas fa-history"></i>
+            </div>
+            <h2>Rejoindre une revue</h2>
+            <p>Entrez le code de session pour voir la correction</p>
+
+            <div class="join-form-inline">
+                <input
+                    type="text"
+                    id="session-code-input"
+                    class="code-input"
+                    maxlength="6"
+                    placeholder="ABC123"
+                    autocomplete="off"
+                    autocapitalize="characters"
+                >
+                <button id="join-review-btn" class="btn-primary">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            <span id="join-error" class="error-msg hidden"></span>
+        </div>
+
+        <!-- State: Waiting for review to start -->
+        <div id="state-waiting" class="student-state hidden">
+            <div class="state-icon">
+                <i class="fas fa-hourglass-half fa-spin"></i>
+            </div>
+            <h2>En attente de la revue...</h2>
+            <p>L'enseignant va bientot commencer la correction</p>
+            <div class="session-info-badge">
+                <span>Session: </span>
+                <span id="waiting-session-code">------</span>
+            </div>
+        </div>
+
+        <!-- State: Reviewing question -->
+        <div id="state-review" class="student-state hidden">
+            <div class="question-progress">
+                <span id="question-number">Question 1/10</span>
+            </div>
+
+            <div class="question-content">
+                <h2 id="question-text"></h2>
+            </div>
+
+            <!-- Answer options showing correct answer and my answer -->
+            <div class="review-answers" id="review-answers">
+                <!-- Options will be injected here -->
+            </div>
+
+            <!-- Personal result -->
+            <div class="my-answer-result" id="my-answer-result">
+                <!-- "Votre reponse: A - Correct!" or "Incorrect" -->
+            </div>
+
+            <!-- Explanation -->
+            <div class="explanation-panel student-explanation">
+                <h4><i class="fas fa-lightbulb"></i> Explication</h4>
+                <p id="explanation-text"></p>
+            </div>
+        </div>
+
+        <!-- State: Review ended -->
+        <div id="state-ended" class="student-state hidden">
+            <div class="state-icon">
+                <i class="fas fa-flag-checkered"></i>
+            </div>
+            <h2>Revue terminee</h2>
+            <p>La correction est terminee</p>
+
+            <div class="personal-results" id="personal-results">
+                <div class="score-circle">
+                    <span class="score-value" id="final-score">0%</span>
+                </div>
+                <p class="score-detail">
+                    <span id="correct-answers">0</span> / <span id="total-questions">0</span> bonnes reponses
+                </p>
+            </div>
+
+            <a href="../index.html" class="btn-primary">
+                <i class="fas fa-home"></i> Retour a l'accueil
+            </a>
+        </div>
+
+        <!-- State: Error -->
+        <div id="state-error" class="student-state hidden">
+            <div class="state-icon error-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 id="error-title">Erreur</h2>
+            <p id="error-message">Une erreur s'est produite</p>
+            <a href="review-student.html" class="btn-primary">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="live-common.js"></script>
+    <script src="review-student.js"></script>
+</body>
+</html>
