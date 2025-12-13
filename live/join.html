@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejoindre un Quiz Live</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="live-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="join-container">
+        <header class="join-header">
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1><i class="fas fa-users"></i> Quiz Live</h1>
+        </header>
+
+        <div class="join-content">
+            <div class="join-form" id="join-form">
+                <!-- Step 1: Enter Code -->
+                <div id="step-code" class="join-step">
+                    <h2>Entrez le code de session</h2>
+                    <div class="code-input-wrapper">
+                        <input
+                            type="text"
+                            id="session-code-input"
+                            class="code-input"
+                            maxlength="6"
+                            placeholder="ABC123"
+                            autocomplete="off"
+                            autocapitalize="characters"
+                            autofocus
+                        >
+                    </div>
+                    <p class="input-hint">Le code est affiche sur l'ecran de l'enseignant</p>
+                    <span id="code-error" class="error-msg hidden"></span>
+                </div>
+
+                <!-- Step 2: Enter Name -->
+                <div id="step-name" class="join-step hidden">
+                    <h2>Entrez votre prenom</h2>
+                    <div class="name-input-wrapper">
+                        <input
+                            type="text"
+                            id="participant-name-input"
+                            class="name-input"
+                            maxlength="20"
+                            placeholder="Votre prenom"
+                            autocomplete="off"
+                        >
+                    </div>
+                    <span id="name-error" class="error-msg hidden"></span>
+                </div>
+
+                <button id="join-btn" class="btn-primary btn-large">
+                    <span id="btn-text">Continuer</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Loading state -->
+            <div id="join-loading" class="join-loading hidden">
+                <div class="spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <p>Connexion en cours...</p>
+            </div>
+        </div>
+
+        <!-- Firebase not configured warning -->
+        <div id="firebase-warning" class="warning-banner hidden">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Impossible de se connecter au serveur</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="live-common.js"></script>
+    <script>
+        // State
+        let currentStep = 'code';
+        let sessionCode = '';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check Firebase
+            if (!isFirebaseConfigured()) {
+                showElement('firebase-warning');
+                document.getElementById('join-btn').disabled = true;
+                return;
+            }
+
+            // Check URL parameter for pre-filled code
+            const urlParams = new URLSearchParams(window.location.search);
+            const prefilledCode = urlParams.get('code');
+            if (prefilledCode) {
+                document.getElementById('session-code-input').value = prefilledCode.toUpperCase();
+            }
+
+            // Setup event listeners
+            document.getElementById('join-btn').addEventListener('click', handleJoinClick);
+
+            // Auto-uppercase for code input
+            document.getElementById('session-code-input').addEventListener('input', function(e) {
+                e.target.value = e.target.value.toUpperCase();
+                hideError('code-error');
+            });
+
+            // Enter key handling
+            document.getElementById('session-code-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') handleJoinClick();
+            });
+            document.getElementById('participant-name-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') handleJoinClick();
+            });
+            document.getElementById('participant-name-input').addEventListener('input', function() {
+                hideError('name-error');
+            });
+        });
+
+        // Handle join button click
+        async function handleJoinClick() {
+            if (currentStep === 'code') {
+                await validateCode();
+            } else if (currentStep === 'name') {
+                await joinSession();
+            }
+        }
+
+        // Validate session code
+        async function validateCode() {
+            const codeInput = document.getElementById('session-code-input');
+            const code = codeInput.value.trim().toUpperCase();
+
+            if (code.length !== 6) {
+                showError('code-error', 'Le code doit contenir 6 caracteres');
+                return;
+            }
+
+            // Show loading
+            showLoading();
+
+            try {
+                const result = await validateSession(code);
+
+                if (!result.valid) {
+                    hideLoading();
+                    showError('code-error', result.error);
+                    return;
+                }
+
+                // Code is valid, move to name step
+                sessionCode = code;
+                hideLoading();
+                switchToNameStep();
+
+            } catch (error) {
+                console.error('Error validating code:', error);
+                hideLoading();
+                showError('code-error', 'Erreur de connexion');
+            }
+        }
+
+        // Switch to name entry step
+        function switchToNameStep() {
+            currentStep = 'name';
+            hideElement('step-code');
+            showElement('step-name');
+            document.getElementById('btn-text').textContent = 'Rejoindre';
+            document.getElementById('participant-name-input').focus();
+        }
+
+        // Join the session
+        async function joinSession() {
+            const nameInput = document.getElementById('participant-name-input');
+            const name = nameInput.value.trim();
+
+            if (name.length < 1) {
+                showError('name-error', 'Veuillez entrer votre prenom');
+                return;
+            }
+
+            if (name.length > 20) {
+                showError('name-error', 'Le prenom ne peut pas depasser 20 caracteres');
+                return;
+            }
+
+            // Show loading
+            showLoading();
+
+            try {
+                // Generate participant ID
+                const participantId = generateUUID();
+
+                // Store session info
+                sessionStorage.setItem('sessionCode', sessionCode);
+                sessionStorage.setItem('participantId', participantId);
+                sessionStorage.setItem('participantName', name);
+
+                // Redirect to student page
+                window.location.href = 'student.html';
+
+            } catch (error) {
+                console.error('Error joining session:', error);
+                hideLoading();
+                showError('name-error', 'Erreur lors de la connexion');
+            }
+        }
+
+        // Show error message
+        function showError(elementId, message) {
+            const errorEl = document.getElementById(elementId);
+            errorEl.textContent = message;
+            errorEl.classList.remove('hidden');
+        }
+
+        // Hide error message
+        function hideError(elementId) {
+            const errorEl = document.getElementById(elementId);
+            errorEl.classList.add('hidden');
+        }
+
+        // Show/hide loading
+        function showLoading() {
+            hideElement('join-form');
+            showElement('join-loading');
+        }
+
+        function hideLoading() {
+            showElement('join-form');
+            hideElement('join-loading');
+        }
+
+        // Show/hide elements (local versions)
+        function showElement(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function hideElement(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

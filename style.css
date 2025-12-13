@@ -678,3 +678,120 @@ footer {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+/* ============================================
+   LIVE QUIZ SECTION (Dashboard)
+   ============================================ */
+
+.live-quiz-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #e0e0e0;
+}
+
+.live-quiz-section h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-description {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.live-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.live-card {
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.live-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.live-card.teacher {
+    border-left: 4px solid #4a6491;
+}
+
+.live-card.teacher:hover {
+    border-color: #4a6491;
+}
+
+.live-card.student {
+    border-left: 4px solid #28a745;
+}
+
+.live-card.student:hover {
+    border-color: #28a745;
+}
+
+.live-icon {
+    font-size: 2.5rem;
+    margin-right: 20px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.live-card.teacher .live-icon {
+    color: #4a6491;
+    background: rgba(74, 100, 145, 0.1);
+}
+
+.live-card.student .live-icon {
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+}
+
+.live-info {
+    flex: 1;
+}
+
+.live-info h3 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.live-info p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.live-action {
+    color: #ccc;
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.live-card:hover .live-action {
+    color: #4a6491;
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .live-options {
+        grid-template-columns: 1fr;
+    }
+}

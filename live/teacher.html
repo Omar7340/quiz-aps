@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mode Enseignant - Quiz Live</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="live-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="live-container">
+        <!-- Phase 1: Setup - Quiz Selection -->
+        <div id="setup-phase" class="phase">
+            <header class="live-header">
+                <a href="../index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Retour
+                </a>
+                <h1><i class="fas fa-chalkboard-teacher"></i> Mode Enseignant</h1>
+            </header>
+
+            <div class="setup-content">
+                <h2>Choisir un quiz</h2>
+                <div class="quiz-selector" id="quiz-selector">
+                    <!-- Quiz cards will be injected here -->
+                </div>
+                <button id="create-session-btn" class="btn-primary" disabled>
+                    <i class="fas fa-play"></i> Creer la session
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 2: Waiting Room -->
+        <div id="waiting-phase" class="phase hidden">
+            <header class="live-header">
+                <button class="back-btn" onclick="cancelSession()">
+                    <i class="fas fa-times"></i> Annuler
+                </button>
+                <h1 id="waiting-quiz-title">Quiz Live</h1>
+            </header>
+
+            <div class="waiting-content">
+                <div class="session-code-display">
+                    <h2>Code de session</h2>
+                    <div class="code-box" id="session-code">------</div>
+                    <div id="qr-code"></div>
+                    <p class="join-url">
+                        <i class="fas fa-link"></i>
+                        <span id="join-link"></span>
+                        <button class="btn-icon" onclick="copyJoinLink()" title="Copier le lien">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </p>
+                </div>
+
+                <div class="participants-panel">
+                    <h3><i class="fas fa-users"></i> Participants (<span id="participant-count">0</span>)</h3>
+                    <div class="participant-list" id="participant-list">
+                        <p class="no-participants">En attente de participants...</p>
+                    </div>
+                </div>
+
+                <button id="start-quiz-btn" class="btn-primary btn-large" disabled>
+                    <i class="fas fa-rocket"></i> Commencer le quiz
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 3: Active Quiz -->
+        <div id="active-phase" class="phase hidden">
+            <header class="live-header active-header">
+                <div class="session-info">
+                    <span class="session-badge" id="active-session-code">------</span>
+                    <span id="active-participant-count">0 participants</span>
+                </div>
+                <div class="quiz-controls">
+                    <button id="prev-question-btn" class="btn-nav" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span id="question-indicator">1/10</span>
+                    <button id="next-question-btn" class="btn-nav">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <button id="end-session-btn" class="btn-danger">
+                    <i class="fas fa-stop"></i> Terminer
+                </button>
+            </header>
+
+            <div class="active-content">
+                <div class="question-display">
+                    <h2 id="current-question-text">Question...</h2>
+                    <div class="answer-options" id="answer-options">
+                        <!-- Answer options will be injected here -->
+                    </div>
+                </div>
+
+                <div class="live-results-panel">
+                    <div class="results-header">
+                        <h3><i class="fas fa-chart-bar"></i> Reponses en direct</h3>
+                        <div class="results-options">
+                            <label class="toggle-option">
+                                <input type="checkbox" id="show-live-chart" checked>
+                                <span>Afficher le graphique</span>
+                            </label>
+                            <label class="toggle-option">
+                                <input type="checkbox" id="auto-next" checked>
+                                <span>Auto suivant</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="results-chart" id="results-chart">
+                        <!-- Bar chart will be injected here -->
+                    </div>
+                    <div class="answer-stats">
+                        <span><i class="fas fa-users"></i> <span id="answered-count">0</span>/<span id="total-participants">0</span> ont repondu</span>
+                        <span class="correct-stat"><i class="fas fa-check"></i> <span id="correct-count">0</span> correct</span>
+                    </div>
+                </div>
+
+                <div class="explanation-panel hidden" id="explanation-panel">
+                    <h4><i class="fas fa-lightbulb"></i> Explication</h4>
+                    <p id="explanation-text"></p>
+                </div>
+
+                <button id="toggle-results-btn" class="btn-secondary">
+                    <i class="fas fa-eye"></i> Reveler la reponse
+                </button>
+            </div>
+        </div>
+
+        <!-- Phase 4: Final Results -->
+        <div id="results-phase" class="phase hidden">
+            <header class="live-header">
+                <h1><i class="fas fa-trophy"></i> Resultats de la session</h1>
+            </header>
+
+            <div class="results-content">
+                <div class="session-summary">
+                    <div class="stat-card">
+                        <span class="stat-number" id="final-participants">0</span>
+                        <span class="stat-label">Participants</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="final-questions">0</span>
+                        <span class="stat-label">Questions</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="final-average">0%</span>
+                        <span class="stat-label">Score moyen</span>
+                    </div>
+                </div>
+
+                <div class="leaderboard-panel">
+                    <h3><i class="fas fa-medal"></i> Classement</h3>
+                    <table class="leaderboard-table" id="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rang</th>
+                                <th>Nom</th>
+                                <th>Score</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <!-- Leaderboard rows will be injected here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="results-actions">
+                    <button id="export-results-btn" class="btn-secondary">
+                        <i class="fas fa-download"></i> Exporter (CSV)
+                    </button>
+                    <a href="../index.html" class="btn-primary">
+                        <i class="fas fa-home"></i> Retour a l'accueil
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Firebase not configured warning -->
+        <div id="firebase-warning" class="warning-banner hidden">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Firebase n'est pas configure. Veuillez configurer <code>js/firebase-config.js</code></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="live-common.js"></script>
+    <script src="teacher.js"></script>
+</body>
+</html>

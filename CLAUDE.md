@@ -70,6 +70,38 @@ The `quiz.js` engine:
 - Auto-advances to next question after 1.5 seconds
 - Calculates and displays final score with grade thresholds (90%: Excellent, 75%: Très bien, 60%: Satisfaisant, 50%: Passable)
 
+## Live Quiz Feature
+
+The application includes a real-time "Live Quiz" mode for classroom sessions.
+
+### Setup Requirements
+
+1. Create a Firebase project at https://console.firebase.google.com/
+2. Enable Realtime Database
+3. Copy your Firebase config to `js/firebase-config.js`
+
+### Live Quiz Architecture
+
+```
+live/
+├── teacher.html    # Teacher control panel
+├── teacher.js      # Teacher logic (session management, question control)
+├── join.html       # Student entry page
+├── student.html    # Student quiz interface
+├── student.js      # Student logic (answer submission, state sync)
+├── live-common.js  # Shared utilities
+└── live-style.css  # Live-specific styles
+```
+
+### Firebase Data Model
+
+```
+sessions/{sessionCode}/
+├── quizId, quizTitle, status, currentQuestionIndex
+├── participants/{id}/ (name, isConnected)
+└── answers/{participantId}/{questionId}/ (answer, isCorrect)
+```
+
 ## Language
 
 All quiz content is in French. The application uses Font Awesome icons loaded from CDN.
