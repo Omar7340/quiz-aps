@@ -14,6 +14,7 @@
 // Load configuration from global window object or use defaults
 // This allows flexibility: config can come from external file, GitHub Actions, or environment
 let firebaseConfig = {};
+let database = null; // Declare at module scope
 
 // Try to load from window.firebaseConfig (set by external config file or build process)
 if (typeof window !== 'undefined' && window.firebaseConfig) {
@@ -47,7 +48,7 @@ function isFirebaseConfigured() {
 // Initialize Firebase only if it's configured
 if (isFirebaseConfigured()) {
     firebase.initializeApp(firebaseConfig);
-    const database = firebase.database();
+    database = firebase.database(); // Assign to module-level variable
 } else {
     console.warn('Firebase is not configured. Please set your Firebase credentials.');
     console.warn('For local development, create js/config.js with your Firebase config.');
