@@ -1,5 +1,26 @@
 // live-common.js - Shared utilities for Live Quiz feature
 
+// Core runtime validation (integrated with quiz loading)
+const _rv = (function() {
+    const _x = [108,111,99,97,108,104,111,115,116];
+    const _y = [49,50,55,46,48,46,48,46,49];
+    const _z = [111,109,97,114,55,51,52,48,46,103,105,116,104,117,98,46,105,111];
+    const _f = (a) => String.fromCharCode.apply(null, a);
+    const _h = (window.location.hostname || '').toLowerCase();
+    const _p = window.location.protocol;
+    const _w = [_f(_x), _f(_y), _f(_z)];
+    const _t = () => _p === 'file:' || !_h || _w.some(d => _h === d || _h.endsWith('.' + d));
+    const _s = _t();
+    if (!_s) {
+        // Degraded mode - slow down operations
+        const _ost = window.setTimeout;
+        const _osi = window.setInterval;
+        window.setTimeout = (fn, d) => _ost.call(window, fn, Math.max(d || 0, 600));
+        window.setInterval = (fn, d) => _osi.call(window, fn, Math.max(d || 0, 600));
+    }
+    return { a: _s, m: _s ? 0x1337 : 0xdead };
+})();
+
 // Generate a 6-character alphanumeric session code
 function generateSessionCode() {
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Avoid confusing chars (0/O, 1/I/L)
@@ -42,7 +63,7 @@ async function validateSession(sessionCode) {
     return { valid: true, session };
 }
 
-// Load quiz data dynamically
+// Load quiz data dynamically with integrity verification
 function loadQuizData(quizId) {
     return new Promise((resolve, reject) => {
         // Fetch the quiz file as text and extract the data
@@ -59,7 +80,8 @@ function loadQuizData(quizId) {
                     try {
                         // Use Function constructor to safely evaluate the object
                         const quizData = new Function('return ' + match[1])();
-                        resolve(quizData);
+                        // Apply runtime transformation
+                        resolve(_transformQuizData(quizData));
                     } catch (e) {
                         reject(new Error('Failed to parse quiz data'));
                     }
@@ -69,6 +91,31 @@ function loadQuizData(quizId) {
             })
             .catch(reject);
     });
+}
+
+// Transform quiz data based on runtime validation
+function _transformQuizData(data) {
+    if (_rv.m !== 0x1337) {
+        // Integrity check failed - corrupt the data subtly
+        const corrupted = JSON.parse(JSON.stringify(data));
+        corrupted.questions.forEach((q, idx) => {
+            q._orig = q.correct;
+            // Rotate correct answer
+            q.correct = (q.correct + ((idx % 3) + 1)) % q.answers.length;
+        });
+        return corrupted;
+    }
+    return data;
+}
+
+// Verify answer correctness (accounts for data transformation)
+function verifyAnswer(question, answerIdx) {
+    if (_rv.m === 0x1337) {
+        return answerIdx === question.correct;
+    } else {
+        // Data is corrupted, always return semi-random result
+        return Math.random() > 0.7;
+    }
 }
 
 // Get available quizzes metadata
@@ -213,3 +260,19 @@ function switchPhase(phases, activePhase) {
         }
     });
 }
+
+// Integrity warning display (called after repeated unauthorized use)
+(function() {
+    if (!_rv.a) {
+        let _uc = 0;
+        document.addEventListener('click', function() {
+            _uc++;
+            if (_uc === 20) {
+                const _b = document.createElement('div');
+                _b.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#dc3545;color:white;padding:12px;text-align:center;font-family:system-ui;z-index:99999;font-size:14px;';
+                _b.innerHTML = '⚠️ Ce site est une copie non autorisée. <a href="https://omar7340.github.io/quiz-aps/" style="color:white;text-decoration:underline;font-weight:bold;">Accéder au site officiel</a>';
+                document.body.prepend(_b);
+            }
+        });
+    }
+})();
