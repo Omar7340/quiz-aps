@@ -1,9 +1,10 @@
-// data/quizUV7Terrorisme.js - Quiz UV7 Terrorisme
+// data/quiz3.js - Quiz UV7 Terrorisme
 const quizConfig = {
-    "id": "quizUV7",
-    "title": "UV7 Terrorisme",
+    "id": "quiz3",
+    "title": "UV7 - Terrorisme",
     "description": "QCM sur la prévention et les comportements face au terrorisme, les gestes de secours et les procédures d'urgence.",
     "timeEstimate": "30 minutes",
+    "icon": "fa-shield-alt",
     "questions": [
         {
             "id": 1,

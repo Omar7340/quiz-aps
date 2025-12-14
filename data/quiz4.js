@@ -1,9 +1,10 @@
-// data/quizUV11GestionDesRisques.js - Quiz UV11 Gestion des Risques
+// data/quiz4.js - Quiz UV11 Gestion des Risques
 const quizConfig = {
-    "id": "quizUV11",
-    "title": "UV11 Gestion des Risques",
+    "id": "quiz4",
+    "title": "UV11 - Gestion des Risques",
     "description": "QCM sur la gestion des risques, les procédures de sécurité, les équipements et les comportements à adopter en intervention.",
     "timeEstimate": "25 minutes",
+    "icon": "fa-exclamation-triangle",
     "questions": [
         {
             "id": 1,

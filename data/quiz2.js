@@ -1,9 +1,10 @@
 // data/quiz2.js - Quiz UV5 Sécurité Incendie
 const quizConfig = {
     "id": "quiz2",
-    "title": "UV5 Sécurité Incendie",
+    "title": "UV5 - Sécurité Incendie",
     "description": "QCM sur la prévention incendie, les classes de feu, les extincteurs et les comportements à adopter.",
     "timeEstimate": "20 minutes",
+    "icon": "fa-fire-extinguisher",
     "questions": [
         {
             "id": 1,

@@ -19,15 +19,16 @@ This is a vanilla HTML/CSS/JavaScript project with no build tools or package man
 
 ```
 quiz-aps/
-├── index.html      # Dashboard listing all available quizzes
-├── quiz.html       # Single quiz page (loads quiz via ?id=N parameter)
-├── quiz.js         # Quiz engine logic
-├── style.css       # Global styles
+├── index.html       # Dashboard listing all available quizzes (dynamic)
+├── quiz.html        # Single quiz page (loads quiz via ?id=N parameter)
+├── quiz.js          # Quiz engine logic
+├── quiz-loader.js   # Dynamic quiz card loader for index.html
+├── style.css        # Global styles
 └── data/
-    ├── quiz1.js    # UV2 - Cadre Juridique
-    ├── quiz2.js    # UV5 - Sécurité Incendie
-    ├── quiz3.js    # UV7 - Terrorisme
-    └── quiz4.js    # UV11 - Gestion des risques
+    ├── quiz1.js     # UV2 - Cadre Juridique
+    ├── quiz2.js     # UV5 - Sécurité Incendie
+    ├── quiz3.js     # UV7 - Terrorisme
+    └── quiz4.js     # UV11 - Gestion des risques
 ```
 
 ### Quiz Data Schema
@@ -40,6 +41,7 @@ const quizConfig = {
     title: "UV2 - Cadre Juridique",
     description: "...",
     timeEstimate: "30-45 minutes",
+    icon: "fa-balance-scale",  // Font Awesome icon class
     questions: [
         {
             id: 1,
@@ -54,8 +56,8 @@ const quizConfig = {
 
 ### Adding a New Quiz
 
-1. Create `data/quizN.js` following the schema above
-2. Add a card in `index.html` linking to `quiz.html?id=N`
+1. Create `data/quizN.js` following the schema above (N must be sequential: quiz5.js, quiz6.js, etc.)
+2. The quiz will automatically appear on the dashboard - no HTML changes needed
 
 ### Quiz Engine Flow
 

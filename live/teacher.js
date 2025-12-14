@@ -56,9 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Load and display available quizzes
-function loadAvailableQuizzes() {
-    const quizzes = getAvailableQuizzes();
+async function loadAvailableQuizzes() {
     const container = document.getElementById('quiz-selector');
+    container.innerHTML = '<p class="loading"><i class="fas fa-spinner fa-spin"></i> Chargement...</p>';
+
+    const quizzes = await getAvailableQuizzes();
 
     container.innerHTML = quizzes.map(quiz => `
         <div class="quiz-select-card" data-quiz-id="${quiz.id}">

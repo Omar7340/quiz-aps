@@ -4,6 +4,7 @@ const quizConfig = {
     title: "UV2 - Cadre Juridique",
     description: "Questionnaire sur le droit pénal et la législation sécurité",
     timeEstimate: "30-45 minutes",
+    icon: "fa-balance-scale",
     questions: [
         {
             id: 1,

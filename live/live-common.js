@@ -118,14 +118,34 @@ function verifyAnswer(question, answerIdx) {
     }
 }
 
-// Get available quizzes metadata
-function getAvailableQuizzes() {
-    return [
-        { id: '1', title: 'UV2 - Cadre Juridique', questions: 65, icon: 'fa-balance-scale' },
-        { id: '2', title: 'UV5 - Securite Incendie', questions: 24, icon: 'fa-fire-extinguisher' },
-        { id: '3', title: 'UV7 - Terrorisme', questions: 35, icon: 'fa-shield-alt' },
-        { id: '4', title: 'UV11 - Gestion des Risques', questions: 31, icon: 'fa-exclamation-triangle' }
-    ];
+// Get available quizzes metadata (async - loads from data files)
+async function getAvailableQuizzes() {
+    const quizzes = [];
+    let index = 1;
+
+    while (true) {
+        try {
+            const response = await fetch(`../data/quiz${index}.js`);
+            if (!response.ok) break;
+
+            const text = await response.text();
+            const match = text.match(/const\s+quizConfig\s*=\s*(\{[\s\S]*\});?\s*$/);
+            if (!match) break;
+
+            const config = (new Function('return ' + match[1]))();
+            quizzes.push({
+                id: String(index),
+                title: config.title,
+                questions: config.questions ? config.questions.length : 0,
+                icon: config.icon || 'fa-question-circle'
+            });
+            index++;
+        } catch (e) {
+            break;
+        }
+    }
+
+    return quizzes;
 }
 
 // Format timestamp to readable time
