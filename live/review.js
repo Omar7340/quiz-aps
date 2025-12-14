@@ -436,3 +436,22 @@ function updateBroadcastButton() {
         btn.innerHTML = '<i class="fas fa-broadcast-tower"></i><span>Diffuser</span>';
     }
 }
+
+// Export session results to CSV
+function exportSessionCSV() {
+    if (!selectedSession || !quizConfig) {
+        alert('Aucune session selectionnee');
+        return;
+    }
+
+    // Calculate stats and generate leaderboard
+    const stats = calculateSessionStats(
+        selectedSession.answers,
+        selectedSession.participants,
+        quizConfig
+    );
+    const leaderboard = generateLeaderboard(stats, selectedSession.participants);
+
+    // Use the common export function
+    exportToCSV(leaderboard, selectedSessionCode, selectedSession.quizTitle || quizConfig.title);
+}

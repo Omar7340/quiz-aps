@@ -1583,6 +1583,33 @@
     padding: 15px 20px;
 }
 
+/* Export button */
+.btn-export {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-left: auto;
+}
+
+.btn-export:hover {
+    background: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+}
+
+.btn-export:active {
+    transform: translateY(0);
+}
+
 /* Responsive for review */
 @media (max-width: 768px) {
     .review-header {
@@ -1597,6 +1624,12 @@
 
     .review-session-info .separator {
         display: none;
+    }
+
+    .review-session-info .btn-export {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
     }
 
     .session-card {
