@@ -16,7 +16,7 @@ const quizConfig = {
                 "Seulement si mon incapacité de travail (ITT) est supérieure à 8 jours",
                 "Aucunes des réponses précédentes"
             ],
-            correct: 1,
+            correct: 2,
             explanation: "Un accident survenu pendant le travail, lors d'une intervention professionnelle, est considéré comme un accident du travail, quelle que soit la durée de l'ITT."
         },
         {
@@ -29,7 +29,7 @@ const quizConfig = {
                 "Une matraque téléscopique",
                 "Aucune des autres réponses"
             ],
-            correct: 0,
+            correct: 4,
             explanation: "Les armes de catégorie D (matraques, bombes lacrymogènes) peuvent être portées par les APS dans le cadre de leurs missions, sous certaines conditions, sans autorisation préfectorale spécifique pour ce type d'arme."
         },
         {
@@ -56,7 +56,7 @@ const quizConfig = {
                 "Dans tous les cas, même au péril de ma vie",
                 "Aucune des réponses proposées"
             ],
-            correct: 4,
+            correct: 1,
             explanation: "L'obligation d'assistance est régie par l'article 223-6 du code pénal, mais l'agent doit évaluer les risques et agir dans le respect des consignes et de sa propre sécurité."
         },
         {
@@ -384,8 +384,8 @@ const quizConfig = {
                 "Trois insignes",
                 "Aucun n’est exigé, seule l’indication « SECURITE » sur un blouson ou un tee-shirt suffit"
             ],
-            correct: 1,
-            explanation: "La réglementation impose au moins deux insignes (ex. : sur les épaules) identifiant clairement l'entreprise."
+            correct: 0,
+            explanation: "La réglementation impose au moins un insignes (ex. : sur les épaules) identifiant clairement l'entreprise."
         },
         {
             id: 31,
