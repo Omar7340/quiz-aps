@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Sécurité Privée</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1><i class="fas fa-shield-alt"></i> Plateforme de Quiz - Sécurité Privée</h1>
+            <p class="subtitle">Formation et entraînement aux métiers de la sécurité</p>
+        </header>
+
+        <main class="dashboard">
+            <div class="welcome-card">
+                <h2><i class="fas fa-graduation-cap"></i> Bienvenue</h2>
+                <p>Cette plateforme vous permet de vous entraîner avec différents quiz sur la sécurité privée.</p>
+                <div class="features">
+                    <p><i class="fas fa-check-circle"></i>Réponses instantanées</p>
+                    <p><i class="fas fa-check-circle"></i>Pas d'authentification</p>
+                    <p><i class="fas fa-check-circle"></i>Quiz illimités</p>
+                </div>
+            </div>
+
+            <div class="quiz-selection">
+                <h2><i class="fas fa-list-alt"></i> Quiz disponibles</h2>
+                <div id="quiz-grid" class="quiz-grid">
+                    <p class="loading-quizzes"><i class="fas fa-spinner fa-spin"></i> Chargement des quiz...</p>
+                </div>
+            </div>
+
+            <!-- Live Quiz Section -->
+            <div class="live-quiz-section">
+                <h2><i class="fas fa-broadcast-tower"></i> Mode Quiz Live</h2>
+                <p class="section-description">Organisez des sessions de quiz en temps reel avec vos eleves</p>
+
+                <div class="live-options">
+                    <a href="live/teacher.html" class="live-card teacher">
+                        <div class="live-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="live-info">
+                            <h3>Mode Enseignant</h3>
+                            <p>Demarrer une session live et controler le quiz en temps reel</p>
+                        </div>
+                        <div class="live-action">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <a href="live/join.html" class="live-card student">
+                        <div class="live-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="live-info">
+                            <h3>Rejoindre une session</h3>
+                            <p>Participer a un quiz en cours avec votre smartphone</p>
+                        </div>
+                        <div class="live-action">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+
+                    <a href="live/review.html" class="live-card review">
+                        <div class="live-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="live-info">
+                            <h3>Historique des sessions</h3>
+                            <p>Revoir les resultats et faire la correction des sessions passees</p>
+                        </div>
+                        <div class="live-action">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Admin Tools Section -->
+            <div class="live-quiz-section">
+                <h2><i class="fas fa-tools"></i> Outils d'administration</h2>
+                <p class="section-description">Gerez et modifiez le contenu des quiz</p>
+
+                <div class="live-options">
+                    <a href="editor.html" class="live-card editor">
+                        <div class="live-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <div class="live-info">
+                            <h3>Editeur de quiz</h3>
+                            <p>Creer, modifier et supprimer des questions dans les quiz</p>
+                        </div>
+                        <div class="live-action">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+            <p>Plateforme éducative - Hébergée sur GitHub Pages</p>
+            <p class="github-link">
+                <i class="fab fa-github"></i> 
+                <a href="https://github.com/Omar7340/quiz-aps" target="_blank">
+                    Voir le code source
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="quiz-loader.js"></script>
+</body>
+</html>

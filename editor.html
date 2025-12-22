@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editeur de Quiz - Quiz APS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="live/live-style.css">
+    <link rel="stylesheet" href="editor-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="live-container">
+        <!-- Phase 1: Quiz Selection -->
+        <div id="select-phase" class="phase">
+            <header class="live-header">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Retour
+                </a>
+                <h1><i class="fas fa-edit"></i> Editeur de Quiz</h1>
+            </header>
+
+            <div class="setup-content">
+                <h2>Choisir un quiz a modifier</h2>
+
+                <div class="editor-options">
+                    <div class="option-group">
+                        <label for="quiz-select">Quiz existant :</label>
+                        <select id="quiz-select" class="form-select">
+                            <option value="">-- Selectionner un quiz --</option>
+                        </select>
+                    </div>
+
+                    <div class="option-divider">ou</div>
+
+                    <button id="new-quiz-btn" class="btn-secondary">
+                        <i class="fas fa-plus"></i> Creer un nouveau quiz
+                    </button>
+
+                    <div class="option-divider">ou</div>
+
+                    <button id="import-btn" class="btn-secondary">
+                        <i class="fas fa-paste"></i> Importer depuis le presse-papier
+                    </button>
+                </div>
+
+                <button id="load-quiz-btn" class="btn-primary" disabled>
+                    <i class="fas fa-folder-open"></i> Charger le quiz
+                </button>
+            </div>
+
+            <!-- Import Modal -->
+            <div id="import-modal" class="modal">
+                <div class="modal-content modal-large">
+                    <span class="close" id="close-import">&times;</span>
+                    <h2><i class="fas fa-paste"></i> Importer un quiz</h2>
+                    <p class="modal-description">Collez le contenu du fichier quiz (format JavaScript) :</p>
+                    <textarea id="import-textarea" class="code-textarea" placeholder="const quizConfig = { ... };"></textarea>
+                    <div class="modal-actions">
+                        <button id="cancel-import" class="btn-secondary">Annuler</button>
+                        <button id="confirm-import" class="btn-primary">
+                            <i class="fas fa-check"></i> Importer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase 2: Editor -->
+        <div id="editor-phase" class="phase hidden">
+            <header class="live-header">
+                <button class="back-btn" id="back-to-select">
+                    <i class="fas fa-arrow-left"></i> Retour
+                </button>
+                <h1 id="editor-title">Edition du quiz</h1>
+                <div class="header-actions">
+                    <button id="preview-btn" class="btn-secondary btn-small">
+                        <i class="fas fa-code"></i> Apercu
+                    </button>
+                    <button id="download-btn" class="btn-primary btn-small">
+                        <i class="fas fa-download"></i> Telecharger
+                    </button>
+                </div>
+            </header>
+
+            <!-- Metadata Section -->
+            <div class="editor-section">
+                <h3><i class="fas fa-info-circle"></i> Informations du quiz</h3>
+                <div class="metadata-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quiz-id">ID du quiz</label>
+                            <input type="text" id="quiz-id" class="form-input" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="quiz-icon">Icone</label>
+                            <select id="quiz-icon" class="form-select">
+                                <option value="fa-balance-scale">Balance (Juridique)</option>
+                                <option value="fa-fire-extinguisher">Extincteur (Incendie)</option>
+                                <option value="fa-user-shield">Bouclier (Protection)</option>
+                                <option value="fa-exclamation-triangle">Attention (Risques)</option>
+                                <option value="fa-handshake">Poignee de main (Relations)</option>
+                                <option value="fa-broadcast-tower">Antenne (Communication)</option>
+                                <option value="fa-users">Utilisateurs (Personnel)</option>
+                                <option value="fa-shield-alt">Bouclier (Securite)</option>
+                                <option value="fa-question-circle">Question (Defaut)</option>
+                                <option value="fa-book">Livre (Formation)</option>
+                                <option value="fa-gavel">Marteau (Loi)</option>
+                                <option value="fa-id-card">Carte (Identite)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="quiz-title">Titre *</label>
+                        <input type="text" id="quiz-title" class="form-input" placeholder="Ex: UV2 - Cadre Juridique">
+                    </div>
+                    <div class="form-group">
+                        <label for="quiz-description">Description *</label>
+                        <textarea id="quiz-description" class="form-textarea" placeholder="Ex: Questionnaire sur le droit penal et la legislation securite"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="quiz-time">Duree estimee</label>
+                        <input type="text" id="quiz-time" class="form-input" placeholder="Ex: 30-45 minutes">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questions Section -->
+            <div class="editor-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-list-ol"></i> Questions (<span id="question-count">0</span>)</h3>
+                    <button id="add-question-btn" class="btn-primary btn-small">
+                        <i class="fas fa-plus"></i> Ajouter une question
+                    </button>
+                </div>
+
+                <div id="questions-list" class="questions-list">
+                    <p class="no-questions">Aucune question. Cliquez sur "Ajouter une question" pour commencer.</p>
+                </div>
+            </div>
+
+            <!-- Validation Errors -->
+            <div id="validation-errors" class="validation-errors hidden">
+                <h4><i class="fas fa-exclamation-triangle"></i> Erreurs de validation</h4>
+                <ul id="error-list"></ul>
+            </div>
+        </div>
+
+        <!-- Question Edit Modal -->
+        <div id="question-modal" class="modal">
+            <div class="modal-content modal-large">
+                <span class="close" id="close-question">&times;</span>
+                <h2 id="modal-question-title">Modifier la question</h2>
+
+                <div class="question-form">
+                    <div class="form-group">
+                        <label for="question-text">Question *</label>
+                        <textarea id="question-text" class="form-textarea" rows="3" placeholder="Entrez la question..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reponses * <span class="hint">(Selectionnez la bonne reponse)</span></label>
+                        <div id="answers-container" class="answers-editor">
+                            <!-- Answer inputs will be added here -->
+                        </div>
+                        <button id="add-answer-btn" class="btn-secondary btn-small">
+                            <i class="fas fa-plus"></i> Ajouter une reponse
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="question-explanation">Explication *</label>
+                        <textarea id="question-explanation" class="form-textarea" rows="2" placeholder="Explication affichee apres la reponse..."></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="cancel-question" class="btn-secondary">Annuler</button>
+                    <button id="save-question" class="btn-primary">
+                        <i class="fas fa-check"></i> Enregistrer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Modal -->
+        <div id="preview-modal" class="modal">
+            <div class="modal-content modal-large">
+                <span class="close" id="close-preview">&times;</span>
+                <h2><i class="fas fa-code"></i> Apercu du code</h2>
+                <div class="preview-actions">
+                    <button id="copy-code-btn" class="btn-secondary btn-small">
+                        <i class="fas fa-copy"></i> Copier
+                    </button>
+                </div>
+                <pre id="code-preview" class="code-preview"></pre>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div id="delete-modal" class="modal">
+            <div class="modal-content modal-small">
+                <h2><i class="fas fa-trash-alt"></i> Confirmer la suppression</h2>
+                <p>Etes-vous sur de vouloir supprimer cette question ?</p>
+                <div class="modal-actions">
+                    <button id="cancel-delete" class="btn-secondary">Annuler</button>
+                    <button id="confirm-delete" class="btn-danger">
+                        <i class="fas fa-trash"></i> Supprimer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="editor.js"></script>
+</body>
+</html>
