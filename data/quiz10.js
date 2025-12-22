@@ -1,5 +1,4 @@
-
-// data/quiz_uv8.js - Quiz UV8 Module Professionnel
+// data/quiz_uv8.js - UV8 - Module Professionnel
 const quizConfig = {
     id: "quiz_uv8",
     title: "UV8 - Module Professionnel",
@@ -16,7 +15,7 @@ const quizConfig = {
                 "Seulement si mon incapacité de travail (ITT) est supérieure à 8 jours",
                 "Aucunes des réponses précédentes"
             ],
-            correct: 2,
+            correct: 1,
             explanation: "Un accident survenu pendant le travail, lors d'une intervention professionnelle, est considéré comme un accident du travail, quelle que soit la durée de l'ITT."
         },
         {

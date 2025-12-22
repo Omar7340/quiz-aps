@@ -1,4 +1,4 @@
-// data/quiz1.js - Quiz UV2 Cadre Juridique
+// data/quiz1.js - UV2 - Cadre Juridique
 const quizConfig = {
     id: "quiz1",
     title: "UV2 - Cadre Juridique",
@@ -67,7 +67,7 @@ const quizConfig = {
                 "Je suis habilité à effectuer un interrogatoire dans certains cas",
                 "Je suis habilité à effectuer un contrôle d'identité dans certains cas"
             ],
-            correct: 4,
+            correct: 1,
             explanation: "Un APS peut effectuer un contrôle d'identité dans les conditions prévues par la loi et le règlement intérieur."
         },
         {
@@ -635,8 +635,8 @@ const quizConfig = {
                 "Crime",
                 "Délit aggravé"
             ],
-            correct: 4,
-            explanation: "Le vol avec arme est un délit aggravé (article 311-4 CP)."
+            correct: 3,
+            explanation: "Le vol avec arme est un crime"
         },
         {
             id: 50,

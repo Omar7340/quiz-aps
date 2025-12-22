@@ -1,3 +1,4 @@
+// data/quiz1.js - UV4 - Module Stratégique
 const quizConfig = {
     id: "quiz1",
     title: "UV4 - Module Stratégique",
@@ -41,7 +42,7 @@ const quizConfig = {
                 "Aucune des autres réponses",
                 "Qui reste interne à votre entreprise sans conséquence pénale"
             ],
-            correct: 3,
+            correct: 1,
             explanation: "Le compte rendu est un moyen simple et direct de communication avec la hiérarchie."
         },
         {
@@ -67,8 +68,8 @@ const quizConfig = {
                 "Oui, c’est la convention collective qui l’impose",
                 "Aucune des autres réponses"
             ],
-            correct: 4,
-            explanation: "Aucune des autres réponses n'est exacte ; la tenue d'une main courante est une pratique professionnelle recommandée mais pas imposée par une loi spécifique mentionnée ici."
+            correct: 1,
+            explanation: "La tenue d'une main courante est une pratique professionnelle recommandée mais pas imposée par une loi spécifique."
         },
         {
             id: 6,
@@ -157,8 +158,8 @@ const quizConfig = {
                 "Dans les consignes de sûreté",
                 "Aucune des autres réponses"
             ],
-            correct: 3,
-            explanation: "La disparition d'un extincteur relève des consignes de sûreté (vol, vandalisme)."
+            correct: 0,
+            explanation: "La disparition d'un extincteur relève des consignes de incendie."
         },
         {
             id: 13,
@@ -235,8 +236,8 @@ const quizConfig = {
                 "Ne pouvez rien faire qu’en situation de plan Vigipirate",
                 "Passer par le chef de poste, seule personne habilitée."
             ],
-            correct: 4,
-            explanation: "En règle générale, la transmission des consignes passe par le chef de poste."
+            correct: 2,
+            explanation: "En règle générale, la transmission des consignes oral est suffisante mais un écrit est toujours nécessaire."
         },
         {
             id: 19,
@@ -337,8 +338,8 @@ const quizConfig = {
                 "Une consigne ponctuelle",
                 "Une consigne permanente"
             ],
-            correct: 2,
-            explanation: "Il s'agit d'une consigne spéciale car elle concerne un événement exceptionnel."
+            correct: 3,
+            explanation: "Il s'agit d'une consigne poncutelle car elle concerne un événement exceptionnel."
         },
         {
             id: 27,

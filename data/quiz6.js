@@ -1,3 +1,4 @@
+// data/quiz2.js - UV9 - Palpation
 const quizConfig = {
     id: "quiz2",
     title: "UV9 - Palpation",
@@ -67,7 +68,7 @@ const quizConfig = {
                 "Sous le contrôle d’un OPJ et personne de même sexe",
                 "Aucune des autres réponses"
             ],
-            correct: 4,
+            correct: 3,
             explanation: "Pour un rassemblement sportif de plus de 300 personnes, les palpations doivent être réalisées sous contrôle d’un OPJ et par une personne de même sexe."
         },
         {
@@ -248,8 +249,8 @@ const quizConfig = {
                 "L'OPJ",
                 "Le Maire"
             ],
-            correct: 0,
-            explanation: "C’est le préfet du département qui délivre l’agrément pour les palpations de sécurité."
+            correct: 1,
+            explanation: "C’est le CNAPS qui délivre l’agrément pour les palpations de sécurité."
         },
         {
             id: 20,
@@ -274,7 +275,7 @@ const quizConfig = {
                 "Les palpations de sécurité",
                 "La fouille au corps"
             ],
-            correct: 0,
+            correct: 2,
             explanation: "Une agente féminine ne peut pas palper un homme ; elle doit utiliser d’autres méthodes (contrôle visuel, magnétomètre)."
         },
         {
@@ -287,8 +288,8 @@ const quizConfig = {
                 "Avoir été agréés par la commission internationale suite à l’envoi d’un dossier par l’organisateur de la manifestation",
                 "Rien n’est nécessaire"
             ],
-            correct: 1,
-            explanation: "Il faut une habilitation de l’employeur et un agrément délivré par le préfet."
+            correct: 0,
+            explanation: "Il faut une habilitation de l’employeur et un agrément délivré par le CNAPS."
         },
         {
             id: 23,
@@ -300,8 +301,8 @@ const quizConfig = {
                 "Sur une personne appréhendée suite à un flagrant délit qui menaçait de se couper les veines",
                 "Aucune des autres réponses"
             ],
-            correct: 4,
-            explanation: "Aucune des situations décrites ne respecte l’ensemble des conditions légales (agrément, même sexe, consentement, cadre préfectoral)."
+            correct: 3,
+            explanation: "Recherche d'arme par exemple."
         },
         {
             id: 24,
@@ -326,8 +327,8 @@ const quizConfig = {
                 "Je demande à la personne de bien vouloir poser délicatement et en sécurité le couteau au sol",
                 "Je peux saisir d’autorité l’arme par mesure de sécurité"
             ],
-            correct: 4,
-            explanation: "En cas de danger immédiat (arme visible), l’agent peut saisir l’objet par mesure de sécurité pour neutraliser la menace."
+            correct: 3,
+            explanation: "Je demande à la personne de bien vouloir poser délicatement et en sécurité le couteau au sol"
         },
         {
             id: 26,

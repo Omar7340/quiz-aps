@@ -1,3 +1,4 @@
+// data/quiz3.js - UV12 - Electronique, Événementiel, Industriel
 const quizConfig = {
     id: "quiz3",
     title: "UV12 - Electronique, Événementiel, Industriel",
@@ -106,8 +107,8 @@ const quizConfig = {
                 "Des billets pré-vendus en totalités longtemps à l’avance avec places réservées",
                 "Aucune des autres réponses"
             ],
-            correct: 2,
-            explanation: "La vente totale sans places réservées longtemps à l'avance aggrave les risques de désordre, de sur-fréquentation et de gestion des flux."
+            correct: 0,
+            explanation: "La vente au dernier moment sans places réservées aggrave les risques de désordre, de sur-fréquentation et de gestion des flux."
         },
         {
             id: 9,
@@ -262,8 +263,8 @@ const quizConfig = {
                 "Je ne peux pas appréhender la personne car elle n’a commis délit puni d’une peine d’emprisonnement",
                 "Aucune des autres réponses"
             ],
-            correct: 4,
-            explanation: "Aucune des propositions n'est correcte. L'agent doit d'abord tenter de calmer la situation, puis si nécessaire, faire appel aux forces de l'ordre, sans enfermement arbitraire."
+            correct: 1,
+            explanation: "L'agent doit d'abord tenter de calmer la situation, puis si nécessaire, faire appel aux forces de l'ordre, sans enfermement arbitraire."
         },
         {
             id: 21,
@@ -275,8 +276,8 @@ const quizConfig = {
                 "Aucune des autres réponses",
                 "D'en faire la déclaration au Préfet de région au moins un an avant l'événement"
             ],
-            correct: 1,
-            explanation: "La déclaration se fait auprès du maire pour plus de 300 personnes, et auprès du préfet (ou préfet de police) pour plus de 1500 personnes."
+            correct: 0,
+            explanation: "La déclaration se fait auprès du maire et auprès du préfet (ou préfet de police) pour plus de 1500 personnes."
         },
         {
             id: 22,
@@ -301,8 +302,8 @@ const quizConfig = {
                 "Sans le consentement de son conducteur, par un agent de prévention et de sécurité mais sous le contrôle d’un OPJ",
                 "Avec le consentement de son conducteur par un agent de prévention et de sécurité"
             ],
-            correct: 4,
-            explanation: "L'inspection visuelle du véhicule nécessite le consentement du conducteur et peut être réalisée par un APS."
+            correct: 2,
+            explanation: "L'inspection visuelle du véhicule nécessite le consentement du conducteur et peut être réalisée par un APS placé sous l'autorité d'un OPJ."
         },
         {
             id: 24,
@@ -431,7 +432,7 @@ const quizConfig = {
                 "Le Conseil National sur l’Informatique et les Libertés",
                 "Le Comité National des Institutions pour les Libertés"
             ],
-            correct: 0,
+            correct: 1,
             explanation: "CNIL signifie Commission Nationale de l'Informatique et des Libertés."
         },
         {
@@ -458,7 +459,6 @@ const quizConfig = {
                 "À protéger les installations recevant du public"
             ],
             correct: 2,
-            correct: 3,
             explanation: "Ces plans (Plan Particulier d'Intervention, Plan d'Opération Interne, Plan d'Évacuation et de Rassemblement) servent à organiser la réponse interne et la mobilisation des secours publics en cas d'incident majeur."
         },
         {
@@ -523,8 +523,8 @@ const quizConfig = {
                 "Aucun, la clôture supprime tous les risques",
                 "Provoquer les attroupements à l’extérieur du site"
             ],
-            correct: 4,
-            explanation: "La clôture peut créer des attroupements et des tensions à l'extérieur si la gestion des flux d'entrée est mal organisée."
+            correct: 1,
+            explanation: "La clôture peut rendre l’évacuation plus difficile si la gestion des flux d'entrée est mal organisée."
         },
         {
             id: 41,
@@ -536,8 +536,8 @@ const quizConfig = {
                 "Je refuse, le système n’est pas fait pour cela",
                 "Aucune des autres réponses"
             ],
-            correct: 2,
-            explanation: "La consultation des images pour des missions de sécurité (comme le contrôle des extincteurs) peut être autorisée si elle est prévue et justifiée, dans le calme et sans autre risque."
+            correct: 3,
+            explanation: "Le SSIAP doit vérifier les extincteurs pendant sa ronde."
         },
         {
             id: 42,
@@ -679,7 +679,7 @@ const quizConfig = {
                 "Périmètre de sécurité pour lequel les conditions d’exercice des agents sont limitées",
                 "Périmètre d’urgence dans lequel des conditions d’usage des armes sont étendues"
             ],
-            correct: 1,
+            correct: 0,
             explanation: "La loi du 30 octobre 2017 permet de créer des 'périmètres de protection' où l'accès et la circulation sont réglementés pour faire face à la menace terroriste."
         }
     ]

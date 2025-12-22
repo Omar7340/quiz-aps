@@ -1,3 +1,4 @@
+// data/quiz5.js - UV3 - Gestion des Conflits
 const quizConfig = {
     id: "quiz5",
     title: "UV3 - Gestion des Conflits",
@@ -145,8 +146,8 @@ const quizConfig = {
                 "À la séduction",
                 "Aucune des autres réponses"
             ],
-            correct: 4,
-            explanation: "Aucune des propositions n'est correcte. La tête baissée peut signifier la soumission, la honte, la réflexion ou l'évitement du regard, mais pas spécifiquement les termes proposés."
+            correct: 1,
+            explanation: "La tête baissée peut signifier l'acceptation passive, la soumission, la honte."
         },
         {
             id: 12,
@@ -171,8 +172,8 @@ const quizConfig = {
                 "Aucune des autres réponses",
                 "Je m'enfuis si je peux ou sinon me confine, et je contacte le 112 par SMS"
             ],
-            correct: 4,
-            explanation: "Face à une menace grave et armée, la priorité absolue est la sécurité personnelle (fuite ou confinement) et l'alerte discrète des secours (112)."
+            correct: 2,
+            explanation: "Face à une menace, la priorité est l'alerte des secours."
         },
         {
             id: 14,
@@ -184,8 +185,8 @@ const quizConfig = {
                 "Tous les DAS sont en position de sécurité",
                 "Au moins un DAS est en défaut de position d’attente"
             ],
-            correct: 1,
-            explanation: "Sur un SSI (Système de Sécurité Incendie), un voyant rouge clignotant indique généralement une alarme feu en cours."
+            correct: 0,
+            explanation: "Sur un SSI (Système de Sécurité Incendie), un voyant rouge clignotant indique généralement un défaut de position de sécurité."
         },
         {
             id: 15,
@@ -197,8 +198,8 @@ const quizConfig = {
                 "Aucune des réponses",
                 "Agressivité – Fuite – Manipulation – Monologue"
             ],
-            correct: 2,
-            explanation: "Les quatre attitudes classiques face au conflit sont : l'agressivité (attaquer), l'assertivité (affirmation respectueuse), la fuite (évitement) et la manipulation (manœuvre indirecte)."
+            correct: 3,
+            explanation: "Aucune des réponses."
         },
         {
             id: 16,
@@ -341,7 +342,6 @@ const quizConfig = {
                 "À l’intonation de la voix – intensité de la voix – Articulation – Débit de la parole"
             ],
             correct: 3,
-            correct: 4,
             explanation: "Il faut être attentif à tous les éléments de communication verbale (ton, débit, articulation) et non-verbale (regard, posture, gestes) pour gérer la situation."
         },
         {
@@ -419,8 +419,8 @@ const quizConfig = {
                 "Vous demandez à l’agent d’accueil de sortir du champ visuel de l’agresseur afin de résoudre le conflit",
                 "Aucune des autres réponses"
             ],
-            correct: 4,
-            explanation: "Aucune des propositions n'est idéale. L'agent doit s'interposer calmement pour protéger son collègue, tenter de calmer l'agresseur et, si nécessaire, appeler du renfort ou les forces de l'ordre, sans expulser arbitrairement une personne peut-être en détresse."
+            correct: 3,
+            explanation: "L'agent doit s'interposer calmement pour protéger son collègue et tenter de calmer l'agresseur notamment en éloignant son collègue et, si nécessaire, appeler du renfort ou les forces de l'ordre."
         },
         {
             id: 33,
