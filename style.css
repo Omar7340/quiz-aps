@@ -742,6 +742,32 @@ footer {
     border-color: #28a745;
 }
 
+.live-card.review {
+    border-left: 4px solid #6c757d;
+}
+
+.live-card.review:hover {
+    border-color: #6c757d;
+}
+
+.live-card.review .live-icon {
+    color: #6c757d;
+    background: rgba(108, 117, 125, 0.1);
+}
+
+.live-card.editor {
+    border-left: 4px solid #fd7e14;
+}
+
+.live-card.editor:hover {
+    border-color: #fd7e14;
+}
+
+.live-card.editor .live-icon {
+    color: #fd7e14;
+    background: rgba(253, 126, 20, 0.1);
+}
+
 .live-icon {
     font-size: 2.5rem;
     margin-right: 20px;
